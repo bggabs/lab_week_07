@@ -1,7 +1,21 @@
+// file: app/build.gradle.kts (Module :app)
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    // Terapkan plugin Secrets Gradle di sini
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+}
+
+// ... bagian 'android' dan 'dependencies' ...
+
+// Tambahkan blok konfigurasi 'secrets' di luar blok 'android'
+secrets {
+    // Digunakan untuk menyimpan Kunci API Anda (harus ada di .gitignore)
+    propertiesFileName = "secrets.properties"
+
+    // Digunakan sebagai nilai fallback jika secrets.properties tidak ditemukan (dapat di-commit)
+    defaultPropertiesFileName = "local.defaults.properties"
 }
 
 android {
